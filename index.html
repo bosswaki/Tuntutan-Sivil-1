@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tuntutan Sivil Kemalangan - Ketahui Hak Anda</title>
+<style>
+  /* Reset & base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f9fafb;
+    color: #1f2937;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover, a:focus {
+    color: #1e40af;
+    outline: none;
+  }
+  /* Container max-width */
+  .container {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    background: #1e40af;
+    padding: 16px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgb(30 64 175 / 0.3);
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 1.75rem;
+    color: white;
+    letter-spacing: 0.03em;
+    user-select: none;
+  }
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 12px;
+    color: white;
+  }
+  nav a:hover, nav a:focus {
+    background-color: #3b82f6;
+    color: white;
+    outline: none;
+  }
+  /* Hamburger for mobile */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+  }
+  /* Mobile menu */
+  @media (max-width: 768px) {
+    nav {
+      display: none;
+      flex-direction: column;
+      background: #1e40af;
+      padding: 24px;
+      position: absolute;
+      top: 62px;
+      right: 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(30, 64, 175, 0.3);
+      z-index: 1100;
+      width: 200px;
+    }
+    nav.show {
+      display: flex;
+    }
+    .mobile-toggle {
+      display: block;
+    }
+  }
+  main {
+    padding: 48px 0 96px 0;
+  }
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
+    color: white;
+    padding: 80px 24px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+    margin-bottom: 72px;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 36px;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+  .btn-primary {
+    background: #fbbf24;
+    color: #1e40af;
+    padding: 14px 36px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgb(251 191 36 / 0.4);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+    background: #ca8a04;
+    box-shadow: 0 12px 24px rgb(202 138 4 / 0.6);
+    outline: none;
+  }
+  /* Section titles */
+  section > h2.section-title {
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 48px;
+    color: #1e40af;
+    letter-spacing: 0.02em;
+  }
+  /* Grid layouts for sections */
+  .grid-2cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 48px;
+  }
+  /* Cards */
+  .card {
+    background: white;
+    padding: 32px 28px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    transition: box-shadow 0.3s ease;
+  }
+  .card:hover, .card:focus-within {
+    box-shadow: 0 16px 40px rgba(37, 99, 235, 0.3);
+  }
+  .card h3 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #2563eb;
+  }
+  .card p {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.5;
+  }
+  /* Image bio cards */
+  .bio-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    margin: 0 -12px;
+  }
+  .bio-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 280px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  .bio-card:hover, .bio-card:focus-within {
+    box-shadow: 0 16px 40px rgba(37, 99, 235, 0.3);
+  }
+  .bio-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+  .bio-body {
+    padding: 20px;
+  }
+  .bio-text {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1e293b;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  /* Forms */
+  form {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #334155;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1.8px solid #cbd5e1;
+    font-size: 1rem;
+    margin-bottom: 24px;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="date"]:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 5px 2px rgba(37, 99, 235, 0.3);
+  }
+  textarea {
+    min-height: 100px;
+  }
+  .file-input {
+    padding: 3px 10px;
+  }
+  /* Submit button */
+  .btn-submit {
+    background: #2563eb;
+    color: white;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgb(37 99 235 / 0.4);
+    transition: background-color 0.3s ease;
+  }
+  .btn-submit:hover, .btn-submit:focus {
+    background: #1e40af;
+    outline: none;
+  }
+  /* Info list for rules and processes */
+  ul.info-list {
+    list-style: disc inside;
+    color: #334155;
+    padding-left: 16px;
+  }
+  ul.info-list li {
+    margin-bottom: 12px;
+  }
+  /* Contact section */
+  .contact-info {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 48px auto;
+    font-weight: 600;
+    color: #334155;
+  }
+  .contact-info p {
+    margin: 4px 0;
+  }
+  /* Footer */
+  footer {
+    background: #1e40af;
+    color: white;
+    padding: 48px 24px 24px 24px;
+    text-align: center;
+    font-size: 0.9rem;
+    user-select: none;
+  }
+  footer a {
+    color: #fde68a;
+  }
+  footer a:hover, footer a:focus {
+    color: #b45309;
+    outline: none;
+  }
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+    }
+    nav {
+      width: 160px;
+      top: 60px;
+    }
+    .btn-primary {
+      padding: 12px 24px;
+      font-size: 1rem;
+    }
+    .bio-card {
+      width: 100%;
+    }
+  }
+
+  .logo {
+  display: flex;
+  align-items: center; /* Menyelaraskan gambar dan teks secara vertikal */
+}
+
+.logo img {
+  margin-right: 10px; /* Menambah jarak antara gambar dan teks */
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-inner" role="banner">
+    <div class="logo" tabindex="0">
+      <img src="./images/logo.png" alt="Logo Tuntutan Sivil" width="70" height="70" />
+      Tuntutan Sivil
+    </div>
+    <button class="mobile-toggle" aria-label="Menu navigasi" aria-expanded="false" aria-controls="primary-navigation">&#9776;</button>
+    <nav id="primary-navigation" role="navigation" aria-label="Navigasi utama">
+      <a href="#beranda" tabindex="0">Beranda</a>
+      <a href="#panduan" tabindex="0">Panduan Proses</a>
+      <a href="#peraturan" tabindex="0">Maklumat Peraturan</a>
+      <a href="#hubungi" tabindex="0">Hubungi Kami</a>
+    </nav>
+  </div>
+</header>
+
+
+<main>
+  <section class="hero" id="beranda" tabindex="0" aria-label="Bahagian utama laman">
+    <h1>Ketahui Hak Anda Sebagai Mangsa Kemalangan</h1>
+    <p>Jangan biarkan orang lain memanipulasi hak anda. Dapatkan bantuan profesional untuk tuntutan sivil kemalangan anda.</p>
+    <button class="btn-primary" onclick="scrollToSection('hubungi')">Hubungi Kami</button>
+  </section>
+
+  <section id="panduan" tabindex="0" aria-label="Panduan proses tuntutan sivil" class="container">
+    <h2 class="section-title">Panduan Langkah Demi Langkah Tuntutan Sivil Kemalangan</h2>
+    <div class="card">
+      <p>Berikut adalah langkah-langkah penting dalam proses tuntutan sivil kemalangan:</p>
+      <ul class="info-list">
+        <li>Laporkan kemalangan kepada polis dan dapatkan laporan polis rasmi.</li>
+        <li>Dapatkan rawatan perubatan serta laporkan kecederaan kepada doktor.</li>
+        <li>Kumpulkan bukti seperti gambar kemalangan, kerosakan kenderaan, dan laporan perubatan.</li>
+        <li>Hubungi peguam atau pihak yang berpengalaman untuk panduan lanjut.</li>
+        <li>Mula proses tuntutan dengan mengisi borang yang sesuai dan mengemukakan dokumen sokongan.</li>
+        <li>Ikuti proses rundingan atau tindakan undang-undang jika perlu.</li>
+      </ul>
+      <p>Untuk maklumat lebih terperinci, sila semak peraturan dan undang-undang berkaitan di bahagian <a href="#peraturan">Maklumat Peraturan</a>.</p>
+    </div>
+  </section>
+
+  <section id="peraturan" tabindex="0" aria-label="Maklumat peraturan tuntutan" class="container" style="margin-top: 80px;">
+    <h2 class="section-title">Maklumat Peraturan dan Undang-Undang</h2>
+    <div class="card">
+      <p>Berikut adalah maklumat undang-undang penting berkaitan tuntutan sivil kemalangan di Malaysia:</p>
+      <ul class="info-list">
+        <li><strong>Akta Pengangkutan Jalan 1987</strong>: Mengawal pengurusan dan keselamatan jalan raya serta aspek tuntutan kerosakan.</li>
+        <li><strong>Akta Undang-Undang Sivil 1956</strong>: Mengandungi prinsip-prinsip tuntutan sivil dan pampasan kerugian.</li>
+        <li>Mangsa kemalangan berhak membuat tuntutan dalam tempoh had masa seperti yang ditetapkan oleh undang-undang.</li>
+        <li>Proses tuntutan harus dilaksanakan mengikut prosedur rasmi untuk mengelakkan masalah undang-undang.</li>
+        <li>Rujuk kepada penasihat undang-undang atau peguam untuk bantuan lanjut dalam proses tuntutan.</li>
+      </ul>
+      <p>Baca lebih lanjut di <a href="https://www.jpj.gov.my/en/web/guest/saman" target="_blank" rel="noopener">JPJ Malaysia</a> dan <a href="https://www.agc.gov.my/agcportal/" target="_blank" rel="noopener">AGC Malaysia</a>.</p>
+    </div>
+  </section>
+
+  <section id="hubungi" tabindex="0" aria-label="Hubungi Kami" class="container" style="margin-top: 80px; margin-bottom: 60px;">
+    <h2 class="section-title">Hubungi kami</h2>
+    <div class="card contact-info">
+      <p>Email: <a href="mailto:wakieuddin777@gmail.com">wakieuddin777@gmail.com</a></p>
+      <p>WhatsApp: <a href="https://wa.me/601133190051" target="_blank" rel="noopener">+60 11 3319 0051</a> (waki)</p>
+      <p>Facebook: <a href="https://www.facebook.com/share/12MF6YxqgrP/?mibextid=wwXIfr">Waqi Euddin </a></p>
+      <p>Instagram: <a href="https://www.instagram.com/waqiiio?igsh=Z3FpMWEwaW1xMWl0&utm_source=qr">@waqiiio</a></p>
+      <p>TikTok: <a href="https://www.tiktok.com/@telagakunyit003_?_t=ZS-8x787azQb5B&_r=1">@telagakunyit003_ </a></p>
+      <p><a href="tel:+601133190051">Call Now</a></p>
+    </div>
+
+  </section>
+
+  <section tabindex="0" aria-label="Bio dan gambar mangsa kemalangan" class="container" style="margin-bottom: 80px;">
+    <h2 class="section-title">Mangsa-mangsa kemalangan</h2>
+    <div class="bio-cards" role="list">
+      <article class="bio-card" role="listitem" tabindex="0">
+
+        <img src="./images/mangsa1.png" alt="mangsa 1" />
+        <div class="bio-body">
+          <p class="bio-text">Seseorang yang sedang mengalami kecederaan kaki akibat kemalangan.</p>
+        </div>
+      </article>
+
+      <article class="bio-card" role="listitem" tabindex="0">
+        <img src="./images/mangsa6.png" alt="mangsa 3" />
+        <div class="bio-body">
+          <p class="bio-text">Individu sedang menerima tuntutan sivil beserta dokumen di pihak berkuasa berkaitan.</p>
+        </div>
+      </article>
+
+        <article class="bio-card" role="listitem" tabindex="0">
+        <img src="./images/mangsa2.png" alt="mangsa 1" />
+        <div class="bio-body">
+          <p class="bio-text">Seorang pesakit yang  mengalami lumpuh, kecederaan saraf, yang menyebabkan ketidakupayaan untuk bergerak sendiri.</p>
+        </div>
+      </article>
+
+        <article class="bio-card" role="listitem" tabindex="0">
+        <img src="./images/mangsa3.png" alt="mangsa 1" />
+        <div class="bio-body">
+          <p class="bio-text">Seorang wanita sedang menjalani proses pemulihan selepas kehilangan sebahagian anggota badan.</p>
+        </div>
+      </article>
+
+      <article class="bio-card" role="listitem" tabindex="0">
+        <img src="./images/mangsa4.png" alt="mangsa 1" />
+        <div class="bio-body">
+          <p class="bio-text">Gambar pesakit yang menerima rawatan intensif di hospital, menunjukkan keperluan perubatan yang tinggi, sesuai sebagai bukti dalam tuntutan sivil.</p>
+        </div>
+      </article>
+
+      <article class="bio-card" role="listitem" tabindex="0">
+        <img src="./images/mangsa7.png" alt="mangsa 1" />
+        <div class="bio-body">
+          <p class="bio-text">Pesakit sedang menandatangani dokumen untuk proses tuntutan sivil.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <p><a href="mailto:wakieuddin777@gmail.com">wakieuddin777@gmail.com</a> | Tel: <a href="tel:+601133190051">+60 11 3319 0051</a></p>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileToggle = document.querySelector('.mobile-toggle');
+  const nav = document.getElementById('primary-navigation');
+  mobileToggle.addEventListener('click', () => {
+    const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+    mobileToggle.setAttribute('aria-expanded', String(!isExpanded));
+    nav.classList.toggle('show');
+  });
+
+  // Scroll smooth to section
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Set max date of accident date input to today
+  const accidentDateInput = document.getElementById('accidentDate');
+  if (accidentDateInput) {
+    accidentDateInput.max = new Date().toISOString().split('T')[0];
+  }
+
+  // Simple form validation and submission simulation for claim form
+  const claimForm = document.getElementById('claimForm');
+  claimForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!claimForm.checkValidity()) {
+      claimForm.reportValidity();
+      return;
+    }
+    alert('Terima kasih, borang tuntutan anda telah diterima. Kami akan hubungi anda secepat mungkin.');
+    claimForm.reset();
+  });
+
+  // Contact form submit - send data as WhatsApp message to given number
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+    // Collect form data
+    const name = contactForm.contactName.value.trim();
+    const email = contactForm.contactEmail.value.trim();
+    const phone = contactForm.contactPhone.value.trim();
+    const message = contactForm.contactMessage.value.trim();
+    // Compose WhatsApp message
+    let waMsg = `Salam,%0ANama: ${name}%0AEmel: ${email}%0A`;
+    if(phone) waMsg += `Telefon: ${phone}%0A`;
+    waMsg += `Mesej:%0A${message}`;
+    // Encode message for URL (already encoded %0A used for newlines)
+    const waNumber = '601133190051'; // WhatsApp number in international format, no plus or spaces
+    const waUrl = `https://wa.me/${waNumber}?text=${waMsg}`;
+    // Open WhatsApp chat in new tab
+    window.open(waUrl, '_blank');
+    // Optionally reset form after open
+    contactForm.reset();
+  });
+</script>
+</body>
+</html>
